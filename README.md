@@ -1,0 +1,2 @@
+# BA-Dashboard
+Bachelorarbeit Dashboard
