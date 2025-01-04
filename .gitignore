@@ -1,0 +1,8 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+BayesTheorem_files/
+BayesTheorem.html
+BayesTheorem_prod.Rmd
+Makefile

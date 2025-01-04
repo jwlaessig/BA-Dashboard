@@ -1,0 +1,10 @@
+name: ba-dashboard
+title:
+username: jwlaessig
+account: jwlaessig
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 13655855
+bundleId: 9596850
+url: https://jwlaessig.shinyapps.io/ba-dashboard/
+version: 1

@@ -1,0 +1,21 @@
+Version: 1.0
+ProjectId: ac86d6f7-3de3-4de8-b66e-5c0fef6cca51
+
+RestoreWorkspace: Default
+SaveWorkspace: Default
+AlwaysSaveHistory: Default
+
+EnableCodeIndexing: Yes
+UseSpacesForTab: Yes
+NumSpacesForTab: 4
+Encoding: UTF-8
+
+RnwWeave: Sweave
+LaTeX: pdfLaTeX
+
+AutoAppendNewline: Yes
+StripTrailingWhitespace: Yes
+
+BuildType: Makefile
+
+ProjectName: Lern-Dashboard-Bachelorarbeit_Lässig
