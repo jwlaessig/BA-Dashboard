@@ -520,4 +520,6 @@ Sebastian 2023. Lineare Regression – Funktionsweise und Berechnung mit RStudio
 Urban, Dieter & Mayerl, Jochen 2011. Regressionsanalyse: Theorie, Technik und Anwendung. 4., überabeitete und erweiterte Auflage. Wiesbaden: VS Verlag für Sozialwissenschaften.
 
 Weiß, C. 2018. Lineare Regression: Folge 8. Notfall +  Rettungsmedizin 21, 5, 406–408. http://link.springer.com/10.1007/s10049-018-0473-0 [Stand 2024-12-1].
+
+ChatGPT für die Übersicht des Boston Housing Datensatzes und als Hilfe beim Programmieren des R Code
 :::
