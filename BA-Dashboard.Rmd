@@ -275,9 +275,7 @@ An der Regressionsgeraden lässt sich ablesen, ob es einen Zusammenhang zwischen
 
 Dies kann man mit dem Bravais-Person Korrelationskoeffizient (r) genauer bestimmen.
 
-Hat man einen signifikanten Beitrag der endogenen Variablen x zur Erklärung der Zielvariablen y festgestellt, 
-kann man die Höhe des Beitrages quantifizieren. Die Maßzahl dafür heißt Determinationskoeffizient (r²). 
-Genauer gibt der Determinationskoeffizient den Anteil der Variationen von y an, der durch den linearen Einfluss von x erklärbar ist.
+Hat man einen signifikanten Beitrag der endogenen Variablen x zur Erklärung der Zielvariablen y festgestellt, kann man die Höhe des Beitrages quantifizieren. Die Maßzahl dafür heißt Determinationskoeffizient (r²). Genauer gibt der Determinationskoeffizient den Anteil der Variationen von y an, der durch den linearen Einfluss von x erklärbar ist.
 
 Determinationskoeffizient:  ![r²](images/r².jpg){height="60px"}
 
@@ -297,6 +295,8 @@ question("Ist der Korrelationskoeffizient r die Wurzel aus dem Determinationskoe
   allow_retry = TRUE
 )
 ```
+
+Die Regressionsgerade ist nur aufschlussreich / anwendbar für den Bereich, für den auch Messwerte vorhanden sind. Liegen für einen Bereich keine Messwerte für die unabhängige Variable vor, dann kann das Modell nicht zum Voraussagen der entsprechenden anhängigen y-Werte genutzt werden. Das gleiche trifft zu, wenn die Regressionsgerade in den negativen Wertebereich der y-Achse sein sollte und es keine negativen y-Werte geben kann.
 
 Um mehrere Variablen Einfluss auf den y-Wert nehmen zu lassen, können diese weiteren Variablen in die Funktion ![euV](images/euV.jpg){height="30px"} eingesetzt werden. Zum Beispiel durch das Einsetzen einer weiteren unabhängigen Variablen, heißt die Formel: ![muV](images/muV.jpg){height="30px"}. Hier wurde ![cz](images/cz.jpg){height="30px"} eingesetzt. Für ![xi](images/xi.jpg){height="30px"} und ![zi](images/zi.jpg){height="30px"} sind die Werte der unabhängigen Variablen einzusetzen und b und c sind die Faktoren für die Werte der unabhängigen Variablen, welche durch die Regressionsgeraden vorgegeben sind.
 
