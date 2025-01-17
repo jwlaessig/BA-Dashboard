@@ -82,7 +82,7 @@ In Tab 2 - "Interpretation der Modellparameter und Gütemaße" wird der analytis
 
 ## Definition und mathematisches Modell und Voraussetzungen
 
-DIe Abhängigkeit der abhängigen Werte der Y-Achse von den unabhängigen Werten der x-Achse kann grafisch dargestellt werden, durch eine Gerade. 
+Die Abhängigkeit der abhängigen Werte der Y-Achse von den unabhängigen Werten der x-Achse kann grafisch dargestellt werden, durch eine Gerade. 
 Diese Gerade wird Regressionsgerade genannt.
 
 Ich möchte, dass Sie ein Plot erstellen mit den Attributen rm als abhängige Variable und medv als unabhängige Variable vom Boston Housing Datensatz, wie er in dem Tab "Übersicht" angezeigt wurde, mit der Funktion geom_point() um die Werte einzutragen und geom_smooth() um die Regressionsgerade zu zeichnen.
@@ -104,6 +104,8 @@ ggplot(boston_housing, aes(rm, medv)) +
 Mathematisch hat die Gerade die Formel: ![fx](images/fx.jpg){height="40px"}.
 
 Weil die Werte in der Grafik, welche Sie gerade erstellt haben, und die Werte anderer Beispiele nicht immer genau auf der Regressionsgeraden liegen, ist es wichtig in der Formel anzugeben, dass die Werte von der Regressionsgeraden abweichen können. Es wird eine Variable u für dieses Abweichen (der sogenannte Fehler) eingefügt, sodass die Formel lautet: ![euV](images/euV.jpg){height="40px"}. 
+
+a bezeichnen wir als die Modellkonstante und b als den Steigungsparameter. b gibt an, um wie viele Einheiten sich ![yi](images/yi.jpg){height="40px"} verändert, wenn ![xi](images/xi.jpg){height="40px"} bei Konstanthaltung aller anderen Einflussgrößen (hier also ![ui](images/ui.jpg){height="40px"}) um eine Einheit steigt.
 
 a gibt den Achsenabschnitt an, also den Schnittpunkt der Regressionsgeraden mit der y-Achse für den Wert: ![xi](images/xi.jpg){height="40px"}=0 an.
 
