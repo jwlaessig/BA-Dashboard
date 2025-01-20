@@ -28,12 +28,33 @@ knitr::opts_chunk$set(echo = FALSE)
 gradethis_setup()
 ```
 
-## Übersicht
+## Einleitung
 
-Die folgenden drei Darstellungen zeigen 1. eine Tabelle der Datenstrucktur von Boston Housing, dem Datensatz der in diesem Dashboard verwendet wird,
-2. ein Plot des Attributes rm (durchschnittliche Anzahl der Räume pro Wohnung) in Bezug auf das Attribut medv (Medianwert der Immobilie (in $1000)) des Boston Haousing Datensatzes mit Regressionsgerade und 3. eine Summary des Programm R des Attributes rm (durchschnittliche Anzahl der Räume pro Wohnung) in Bezug auf das Attribut medv (Medianwert der Immobilie (in $1000)) des Boston Haousing Datensatzes. 
+Für dieses Lern-Dasboard nehmen wir an, dass wir Immobilienmakler sind und unsere Kunden über die Daten des Boston Housing Datensatz [5] informieren wollen.
+
+Dem Kunden wurde bereits gesagt, dass es qualitative und quantitative Merkmale bei den Daten zu den Immobilien geben kann. Qualitative Merkmale sind keine Zahlen, sondern zum Beispiel Farben oder Namen. Quantitative Merkmale sind in Zahlen ausdrückbar und können wie die Zahlen auf einem Lineal geordnet werden.
+
+Als Makler wollen wir zuerst wissen, was der Boston Housing Datensatz für Werte hat.
+Bitte ergänzen Sie den R COde, sodass die ersten Zehn Einträge des "boston_housing" Datensatzes angezeigt werden.
+
+```{r boston_head, exercise=TRUE, exercise.timelimit=5, exercise.blanks = "___+"}
+___(boston_housing, 10)
+```
+
+```{r boston_head-solution, exercise.eval=FALSE, include=FALSE}
+head(boston_housing, 10)
+```
+
+Die folgenden drei Darstellungen zeigen 
+
+1. eine Tabelle [1] der Datenstrucktur von Boston Housing, dem Datensatz der in diesem Dashboard verwendet wird,
+
+2. ein Plot des Attributes rm (durchschnittliche Anzahl der Räume pro Wohnung) in Bezug auf das Attribut medv (Medianwert der Immobilie (in $1000)) des Boston Haousing Datensatzes mit Regressionsgerade und 
+
+3. eine Summary des Programm R des Attributes rm (durchschnittliche Anzahl der Räume pro Wohnung) in Bezug auf das Attribut medv (Medianwert der Immobilie (in $1000)) des Boston Haousing Datensatzes. 
 
 ![Boston-Housing-Overview](images/boston-housing-overview.jpg){height="600px"}
+
 ```{r boston-regression, echo=FALSE}
 # Lineares Regressionsmodell erstellen: medv als Funktion von rm
 model <- lm(medv ~ rm, data = boston_housing)
@@ -60,11 +81,17 @@ question("Über welches Attribut aus dem Boston Housing Datensatz wird in der Su
 )
 ```
 
-Lineare Regression ist, dass eine abhängige Variable von einer unabhängigen Variable erklärt wird. 
-Mit anderen Worten, die unabhängige Variable auf der x-Achse bedingt den Wert der abhängigen Variable auf der y-Achse.
+Das verhalten der Werte in dem Plot mit der Regressionsgeraden (rote Gerade) könnte einem Muster folgen.
+Regression ist eine statistische Methose, um vorherzusagen und zu analysieren, wie sich Variablen zueinander verhalten.
+
+Die lineare Regression ist eine von vielen möglichen Regressionsanalysen (z. B. binär logistische Regression) und kann als einfache lineare Regression oder multiple lineare Regression angewandt werden. Bei der einfachen linearen Regression werden lediglich zwei Variablen im Modell berücksichtigt: eine unabhängige (erklärende) und eine abhängige (erklärte) Variable. Hingegen basiert die multiple lineare Regression auf zwei oder mehr unabhängigen Variablen, um die abhängige Variable zu erklären. [7]
 
 Die Bezeichnung Regression stammt von dem englischen Naturforscher Francis Galton (1822-1911), ein Cousin Charles Darwins.
-Galton untersuchte die Beziehung der Körpergröße von Vätern und ihren Söhnen.
+Galton untersuchte die Beziehung der Körpergröße von Vätern und ihren Söhnen. [10]
+
+Wenn wir verschiedene Werte in einem Koordinatensystem bzw. Plot dargestellt haben, können wir überlegen, ob es eine Abhängigkeit der y-Werte von den x-Werten gibt. Falls wir so eine Abhängigkeit sehen, können wir eventuell eine Gerade, die Regresionsgerade, einzeichnen, die die Abhängigkeit beschreibt. Damit ist gemeint, dass die Werte sich im Durchschnitt ansteigend oder absteigend bei Erhöhung der x-Werte (unabhängige Variable) verhalten.
+
+Die folgende Aufgabe ist nicht ganz einfach (eine Knobelaufgabe), aber wenn ich Ihnen den Tipp gebe, dass Sie überlegen, ob Mittelwert, Median oder eines der Quartile den für die Regressionsgerade wichtigen "Mittelpunkt" darstellt, kommen Sie vielleicht auf die Lösung. Gucken Sie sich zur Unterstützung die Regressionsgerade (rote Gerade) in dem Plot oben an. Ein weiterer Hinweis ist, welcher der angegebenen Punkte liegt überhaupt auf der Regressionsgeraden?
  
 ```{r mittelwert}
 question("Was ist die Bedeutung von Regression in der Statistik?",
@@ -76,16 +103,12 @@ question("Was ist die Bedeutung von Regression in der Statistik?",
 )
 ```
 
-In Tab 1 - "Definition und mathematisches Modell und Voraussetzungen" wird das Erstellen von Grafiken in der Programmiersprache R und mit Regressionsgeraden behandelt und das mathematische Modell der linearen Regression erklärt. Voraussetzungen für die lineare Regression und Anwendungsbereiche werden betrachtet. Nicht alle Voraussetzungen, die aufgeführt sind, werden für den alnalytischen Ansatz benötigt. Der alalytische Ansatz ist die Berechnung der Regressionsgeraden.
+## lineare Regression
 
-In Tab 2 - "Interpretation der Modellparameter und Gütemaße" wird der analytische Ansatz mathematisch erklärt, wie die Regressionsgerade berechnet wird und Sie werden die Berechnung der Regressionsgeraden mit R durchführen. Es wird erklärt, wie die Gütemaße, der Determinationskoeffizient (r²) und der Bravais-Person Korrelationskoeffizient (r) berechnet werden. Die lineare Regression mit mehr als einer unabhängigen Variable wird erklärt.
-
-## Definition und mathematisches Modell und Voraussetzungen
-
-Die Abhängigkeit der abhängigen Werte der Y-Achse von den unabhängigen Werten der x-Achse kann grafisch dargestellt werden, durch eine Gerade. 
+Die Abhängigkeit der abhängigen Werte der y-Achse von den unabhängigen Werten der x-Achse kann grafisch dargestellt werden, durch eine Gerade. 
 Diese Gerade wird Regressionsgerade genannt.
 
-Ich möchte, dass Sie ein Plot erstellen mit den Attributen rm als abhängige Variable und medv als unabhängige Variable vom Boston Housing Datensatz, wie er in dem Tab "Übersicht" angezeigt wurde, mit der Funktion geom_point() um die Werte einzutragen und geom_smooth() um die Regressionsgerade zu zeichnen.
+Ein Immobilien-Interessent möchte, dass Sie ein Plot erstellen mit den Attributen rm als abhängige Variable und medv als unabhängige Variable vom Boston Housing Datensatz, wie er in dem Tab "Einleitung" angezeigt wurde, mit der Funktion geom_point() um die Werte einzutragen und geom_smooth() um die Regressionsgerade zu zeichnen.
 
 ```{r boston_rm, exercise=TRUE, exercise.timelimit=5, exercise.blanks = "___+"}
 ggplot(boston_housing, aes(___, ___)) + # unabhängige Variable, abhängige Variable
@@ -101,27 +124,49 @@ ggplot(boston_housing, aes(rm, medv)) +
     theme_minimal()
 ```
 
-Mathematisch hat die Gerade die Formel: ![fx](images/fx.jpg){height="40px"}.
+Mathematisch hat die Gerade die Formel: $f(x)=a \cdot x + b$
 
-Weil die Werte in der Grafik, welche Sie gerade erstellt haben, und die Werte anderer Beispiele nicht immer genau auf der Regressionsgeraden liegen, ist es wichtig in der Formel anzugeben, dass die Werte von der Regressionsgeraden abweichen können. Es wird eine Variable u für dieses Abweichen (der sogenannte Fehler) eingefügt, sodass die Formel lautet: ![euV](images/euV.jpg){height="40px"}. 
+Weil die Werte in der Grafik, welche Sie gerade erstellt haben, und die Werte anderer Beispiele nicht immer genau auf der Regressionsgeraden liegen, ist es wichtig in der Formel anzugeben, dass die Werte von der Regressionsgeraden abweichen können. Es wird eine Variable u für dieses Abweichen (der sogenannte Fehler) eingefügt, sodass die Formel lautet: $y_i = a \cdot x_i + b + u_i$. 
 
-a bezeichnen wir als die Modellkonstante und b als den Steigungsparameter. b gibt an, um wie viele Einheiten sich ![yi](images/yi.jpg){height="40px"} verändert, wenn ![xi](images/xi.jpg){height="40px"} bei Konstanthaltung aller anderen Einflussgrößen (hier also ![ui](images/ui.jpg){height="40px"}) um eine Einheit steigt.
+b gibt den Achsenabschnitt an, also den Schnittpunkt der Regressionsgeraden mit der y-Achse für den Wert: $x_i = 0$ an.
 
-a gibt den Achsenabschnitt an, also den Schnittpunkt der Regressionsgeraden mit der y-Achse für den Wert: ![xi](images/xi.jpg){height="40px"}=0 an.
+```{r Schnittpunkt}
+# Erstellen des linearen Modells
+model <- lm(medv ~ rm, data = boston_housing)
+
+# Berechnung des y-Achsen-Schnittpunkts (bei x = 0)
+y_intercept <- coef(model)[1] # Intercept der Regressionsgeraden
+
+# Erstellen des Scatterplots mit angepasstem Bereich für x und y
+plot(boston_housing$rm, boston_housing$medv, 
+     xlab = "Anzahl der Zimmer (rm)", 
+     ylab = "Medianwert der Häuser (medv)", 
+     main = "Schnittpunkt mit der y-Achse ist rot (x=0)", 
+     pch = 16, col = "blue",
+     xlim = c(0, max(boston_housing$rm)),       # x-Bereich erweitern, damit x = 0 sichtbar ist
+     ylim = c(min(c(boston_housing$medv, y_intercept)) - 10, max(boston_housing$medv))) # y-Bereich erweitern
+
+# Hinzufügen der Regressionsgeraden
+abline(model, col = "green", lwd = 2)
+
+# Hinzufügen eines grünen Rings bei x = 0 (y = Schnittpunkt der Regressionsgeraden)
+points(x = 0, y = y_intercept, 
+       pch = 1, cex = 3, col = "red")
+```
 
 ```{r a_und_b}
 question("Welche Aussage über a und b ist richtig?",
-  answer("b bezeichnen wir als die Modellkonstante und a als den Steigungsparameter. a gibt an, um wie viele Einheiten sich verändert, 
-wenn  bei Konstanthaltung aller anderen Einflussgrößen (hier also u_i) um eine Einheit steigt."),
   answer("a bezeichnen wir als die Modellkonstante und b als den Steigungsparameter. b gibt an, um wie viele Einheiten sich verändert, 
-wenn  bei Konstanthaltung aller anderen Einflussgrößen (hier also u_i) um eine Einheit steigt.", correct = TRUE),
+wenn  bei Konstanthaltung aller anderen Einflussgrößen (hier also $u_i$) um eine Einheit steigt."),
+  answer("b bezeichnen wir als die Modellkonstante und a als den Steigungsparameter. a gibt an, um wie viele Einheiten sich verändert, 
+wenn  bei Konstanthaltung aller anderen Einflussgrößen (hier also $u_i$) um eine Einheit steigt. [6]", correct = TRUE),
   allow_retry = TRUE
 )
 ```
 
-Der Fehler u ist die Entfernung von der Regressionsgeraden zum wahren Wert (x|y) parallel zur Y-Achse. ![uyy](images/uyy.jpg){height="40px"}
+Der Fehler u ist die Entfernung von der Regressionsgeraden zum wahren Wert (x|y) parallel zur Y-Achse. $u_i = y_i - \hat{y}_i$
 
-Die folgende Grafik zeigt den Wert der Fehler mit einer grünen Linie.
+Die folgende Grafik zeigt die Werte der Fehler mit grünen Linien.
 
 ```{r boston-error, echo=FALSE}
 model <- lm(medv ~ rm, data = boston_housing)
@@ -139,23 +184,8 @@ segments(x0 = boston_housing$rm,  # x-Werte der Punkte
          col = "green", lwd = 1)  # Residuenlinien in grün
 ```
 
-Für ein lineares Regressionsmodell gelten folgende fünf Annahmen:
-
-1. Parameterlinearität: Die Parameter der Regressionsfunktion dürfen nur mit Exponent Eins auftauchen und außerdem nicht multiplikativ 
-mit anderen Parametern verknüpft sein. Variablenlinearität ist nicht erforderlich.
-
-2. Variation von x: Die n mittels einer Zufallsstichprobe gewonnenen Ausprägungen von x sind nicht alle gleich.
-
-3. Exogenität von x: Der bedingte Erwartungswert (E) des Störterms ist gleich Null, d.h. es gilt ![Eux](images/Eux.jpg){height="40px"}.
-
-4. Homoskedastizität: Die bedingte Varianz des Störterms ist konstant, d.h. ![Var](images/Var.jpg){height="40px"}
-Schwanken die Residuen regellos um die x-Achse und bleibt ihre Variabilität in einer ungefähr gleichen Bandbreite, können wir von einem konstanten ![o²](images/o².jpg){height="40px"} ausgehen.
-
-5. Keine Störtermkorrelation: Die bedingte Kovarianz zwischen zwei beliebigen ![ui](images/ui.jpg){height="40px"} und ![uj](images/uj.jpg){height="40px"} und mit i ungleich j ist gleich Null, d.h. ![Cov](images/Cov.jpg){height="40px"}
-
-Korrelation: Wechselbeziehung in der Statistik die wechselseitige Abhängigkeit zweier oder mehrerer Zufallsgrößen.
-
-Programmieren SIe bitte für das Beispiel “Boston Housing” Standardisierte Residuen. Die grafische Darstellung weicht vom Unterricht ab, aber es ist eine gute Visualisierung, der um die Regressionsgerade steuenden Werte.
+Wir wollen als Immobilienmakler unseren Kunden zeigen, dass die vom Computer berechnete Regressionsgerade den Fehler gleichmäßig um sich streuen läßt.
+Programmieren Sie dazu bitte für das Beispiel “Boston Housing” die standardisierten Residuen. Die grafische Darstellung weicht vom Unterricht ab, es ist aber eine gute Visualisierung, der um die Regressionsgerade steuenden Werte.
 
 ```{r boston_sr, exercise=TRUE, exercise.timelimit=5, exercise.blanks = "___+"}
 model <- lm(medv ~ rm, data = boston_housing)
@@ -181,6 +211,7 @@ plot(boston_housing$medv, resid_std,
 abline(h = 0, col = "red", lwd = 2)
 ```
 
+Ein Kunde des Immobilienbüros hat Ihnen eine Frage gestellt. Können Sie diese beantworten?
 
 ```{r sr}
 question("Was ist an der Darstellnung der Standardisierte Residuen anders im Gegensatz zu dem normalen Plot?",
@@ -191,61 +222,30 @@ question("Was ist an der Darstellnung der Standardisierte Residuen anders im Geg
 )
 ```
 
-Um die Regressionsgerade zu bestimmen, sind die Annahmen: 1. Parameterlinearität, 2. Variation von x und 3. Exogenität von x zu erfüllen. Für das Konfidenzband der Regressionsgeraden müssen alle Annahmen erfüllt sein. Für den Determinationskoeffizient (r²) müssen 1. Parameterlinearität und 2. Variation von x erfüllt sein.
+Anwendungsbereiche für lineare Regression sind unter anderem das Untersuchen von Zusammenhängen zwischen Variablen und Prognosemodelle, um zum Beispiel mit einer Regressionsgeraden Werte vorherzusagen.
 
-Zusätzlich zu den oben genannten fünf Annahmen ist noch die Normalverteilungsannahme zu erwähnen.
+Aus dem Matheunterricht wissen wir, dass die Änderung des y-Wertes geteilt durch die Änderung des x-Wertes von zwei verschiedenen Punkten der Anstieg einer Gerade, die durch beide Punkte verläuft, ist. $$a=\frac{\Delta y}{\Delta x}$$
 
-Programmieren Sie bitte am Beispiel “Boston Housing” das Normal-Quantil-Plot der Residuen (Normalverteilungsannahme).
-
-```{r boston_nqp, exercise=TRUE, exercise.timelimit=5, exercise.blanks = "___+"}
-___ <- lm(medv ~ rm, data = boston_housing)
-___ <- resid(model) 
-qqnorm(residuen, 
-       pch = 20, # Punktform
-       col = "blue", # Farbe der Punkte
-       main = "Normal-Quantil-Plot der Residuen",
-       xlab = "Theoretische Quantile",
-       ylab = "Residuen")
-qqline(residuen, col = "red", lwd = 2) # Gerade für Normalverteilung hinzufügen
-```
-
-```{r boston_nqp-solution, exercise.eval=FALSE, include=FALSE}
-model <- lm(medv ~ rm, data = boston_housing)
-residuen <- resid(model) 
-qqnorm(residuen, 
-       pch = 20, # Punktform
-       col = "blue", # Farbe der Punkte
-       main = "Normal-Quantil-Plot der Residuen",
-       xlab = "Theoretische Quantile",
-       ylab = "Residuen")
-qqline(residuen, col = "red", lwd = 2) # Gerade für Normalverteilung hinzufügen
-```
-
-Für die Normalverteilung gilt, dass rund Zweidrittel aller Messwerte innerhalb der Entfernung einer Standardabweichung zum Mittelwert liegen.
-
-Für die Normalverteilungsannahme müssen die Annahmen 3. Exogenität von x und 5. keine Störtermkorrelation erfüllt sein.
-
-Anwendungsbereiche für lineare Regression sind unter anderem das Untersuchen von Zusammenhängen zwischen Variablen und Prognosemodelle, um zum Beispiel mit der Regressionsgerade Werte vorherzusagen.
-
-## Interpretation der Modellparameter und Gütemaße 
+Ganz so einfach kann die Regressionsgerade nicht ermittelt werden, aber die Erklärung für die Regressionsgerade ist nicht schwer, sondern nur aufwendig in den Taschenrechner einzugeben, wenn man mit Hand rechnen muss.
 
 Um die Regressionsgerade zu berechnen, wird das arithmetische Mittel benötigt, um die mittlere quadratische Abweichung und die Kovarianz zu berechnen. 
+
 Diese Erklärung der Berechnung ist für einfache lineare Regression mit einer unabhängigen Variable.
 
-arithmetisches Mittel:  ![am](images/am.jpg){height="40px"}
+arithmetisches Mittel:  $$\bar{x}=\frac{1}{n} \sum_{i=1}^{n} x_i$$
 
-mittlere quadratische Abweichung bzw. Standardabweichung:  ![mqA](images/mqA.jpg){height="40px"} und ![mqA2](images/mqA2.jpg){height="40px"}
+mittlere quadratische Abweichung bzw. Standardabweichung: $$s^2_x=\frac{1}{n} \sum_{i=1}^{n} (x_i-\bar{x})^2$$ $$s^2_y=\frac{1}{n} \sum_{i=1}^{n} (y_i-\bar{y})^2$$
 
-Kovarianz:  ![Kov](images/Kov.jpg){height="40px"}
+Kovarianz: $$s_{xy}=\frac{1}{n} \sum_{i=1}^{n} (x_i-\bar{x}) \cdot (y_i-\bar{y})$$
 
-Mit diesen Werten lassen sich dann a und b der Regressionsgeraden ermitteln, indem in die folgenden Formeln eingesetzt wird: ![a_Dach_und_b_Dach](images/a_Dach_und_b_Dach.jpg){height="50px"}
+Mit diesen Werten lassen sich dann $\hat{a}$ und $\hat{b}$ der Regressionsgeraden ermitteln, indem in die folgenden Formeln eingesetzt wird: $$\hat{a}=\frac{s_{xy}}{s^2_x}$$
+$$\hat{b}=\bar{y} - \hat{a} \cdot \bar{x}$$
 
-Zur Schreibweise: Das Dachˆ über b bzw. über a weist darauf hin, dass es sich um Schätzer für die unbekannten Modellparameter b und a handelt.
+Zur Schreibweise: Das Dachˆ über b bzw. über a weist darauf hin, dass es sich um Schätzer für die unbekannten Modellparameter b und a handelt. [4]
 
-Der in “Tab 1 - Definition und mathematisches Modell und Voraussetzungen“ erwähnte Fehler u ist für die Regressionsgerade nicht wichtig. 
-Er ist wegen der Korrektheit der Formel wichtig, weil die Werte eben nicht immer auf der Regressionsgeraden liegen.
+Der zuvor erwähnte Fehler u ist für die Regressionsgerade nicht wichtig. Er ist wegen der Korrektheit der Formel wichtig, weil die Werte eben nicht immer auf der Regressionsgeraden liegen.
 
-Programmieren SIe bitte ein ggPlot mit Konfidenzband für den Boston Housing Datensatz und benutzen Sie die Variable rm als unabhängige Variable und medv als abhändgige Variable.
+Programmieren Sie bitte auf Kundenwunsch hin ein ggPlot mit Konfidenzband für den Boston Housing Datensatz und benutzen Sie die Variable rm als unabhängige Variable und medv als abhändgige Variable. Der Kunde sagte, dass Sie ihm bitte die Werte zeigen, die die Regressionsgerade zu 95% hat. Welch ein Zufall, dass die Standardeinstellung des Konfidenzbandes genau 95% Genauigkeit der Regressionsgeraden anzeigt.
 
 ```{r boston_ggP, exercise=TRUE, exercise.timelimit=5, exercise.blanks = "___+"}
 ___ <- data.frame(rm = boston_housing$rm, ___ = boston_housing$medv) # Data Frame auf Objekt übergeben
@@ -273,20 +273,20 @@ ggplot(data, aes(x = rm, y = medv)) +
     theme_minimal()
 ```
 
-An der Regressionsgeraden lässt sich ablesen, ob es einen Zusammenhang zwischen den Werten der x-Achse und denen der y-Achse gibt.
+An der Regressionsgeraden lässt sich ablesen, ob einen Zusammenhang zwischen den Werten der x-Achse und denen der y-Achse besteht.
 
-Dies kann man mit dem Bravais-Person Korrelationskoeffizient (r) genauer bestimmen.
+Dies kann man mit dem Determinationskoeffizient (r²) und dem Bravais-Person Korrelationskoeffizient (r) genauer bestimmen.
 
-Hat man einen signifikanten Beitrag der endogenen Variablen x zur Erklärung der Zielvariablen y festgestellt, kann man die Höhe des Beitrages quantifizieren. Die Maßzahl dafür heißt Determinationskoeffizient (r²). Genauer gibt der Determinationskoeffizient den Anteil der Variationen von y an, der durch den linearen Einfluss von x erklärbar ist.
+Hat man einen signifikanten Beitrag der endogenen Variablen x zur Erklärung der Zielvariablen y festgestellt, kann man die Höhe des Beitrages quantifizieren. Die Maßzahl dafür heißt Determinationskoeffizient (r²). Genauer gibt der Determinationskoeffizient den Anteil der Variationen von y an, der durch den linearen Einfluss von x erklärbar ist. [4]
 
-Determinationskoeffizient:  ![r²](images/r².jpg){height="60px"}
+Determinationskoeffizient: $$r^2 = \frac{\sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2} = \frac{\sum_{i=1}^{n} (y_i - \hat{y})^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}$$ 
 
 Ein Determinationskoeffizient von 0,6 bedeutet, dass 60% der Werte der abhängigen Variablen y von der unabhängigen Variablen x erklärt werden können. 
 Dementsprechend sind die restlichen 40% durch den Fehler u zu erklären.
 
 Der Bravais-Person Korrelationskoeffizient ist die Kovarianz geteilt durch die Wurzel des Produkts von der Standardabweichung von x und der Standardabweichung von y.
 
-Bravais-Person Korrelationskoeffizient: ![r](images/r.jpg){height="90px"}
+Bravais-Person Korrelationskoeffizient: $$r= \frac{\sum_{i=1}^{n} (x_i-\bar{x}) \cdot (y_i-\bar{y})}{\sqrt{\sum_{i=1}^{n} (x_i-\bar{x})^2 \cdot \sum_{i=1}^{n} (y_i-\bar{y})^2}}$$
 
 Der Bravais-Person Korrelationskoeffizient (r) von +1 sagt, dass die Regressionsgerade eine Steigung hat und die Werte genau auf der Regressionsgeraden liegen und -1 bedeutet, dass die Regressionsgerade ein Gefälle hat und die Werte genau auf der Regressionsgeraden liegen. Der Determinationskoeffizient (r²) hingegen gibt Aufschluss, wie sehr die Werte auf der Regressionsgeraden liegen, sagt aber nichts über die Steigung aus.
 
@@ -298,14 +298,14 @@ question("Ist der Korrelationskoeffizient r die Wurzel aus dem Determinationskoe
 )
 ```
 
-Die Regressionsgerade ist nur aufschlussreich / anwendbar für den Bereich, für den auch Messwerte vorhanden sind. Liegen für einen Bereich keine Messwerte für die unabhängige Variable vor, dann kann das Modell nicht zum Voraussagen der entsprechenden anhängigen y-Werte genutzt werden. Das gleiche trifft zu, wenn die Regressionsgerade in den negativen Wertebereich der y-Achse sein sollte und es keine negativen y-Werte geben kann.
+Die Regressionsgerade ist nur aufschlussreich / anwendbar für den Bereich, für den auch Messwerte vorhanden sind. Liegen für einen Bereich keine Messwerte vor, dann kann das Modell nicht zum Voraussagen der entsprechenden Werte genutzt werden. Das gleiche trifft zu, wenn die Regressionsgerade in den negativen Wertebereich der y-Achse sein sollte und es keine negativen y-Werte geben kann.
 
-Um mehrere Variablen Einfluss auf den y-Wert nehmen zu lassen, können diese weiteren Variablen in die Funktion ![euV](images/euV.jpg){height="30px"} eingesetzt werden. Zum Beispiel durch das Einsetzen einer weiteren unabhängigen Variablen, heißt die Formel: ![muV](images/muV.jpg){height="30px"}. Hier wurde ![cz](images/cz.jpg){height="30px"} eingesetzt. Für ![xi](images/xi.jpg){height="30px"} und ![zi](images/zi.jpg){height="30px"} sind die Werte der unabhängigen Variablen einzusetzen und b und c sind die Faktoren für die Werte der unabhängigen Variablen, welche durch die Regressionsgeraden vorgegeben sind.
+Um mehrere Variablen Einfluss auf den y-Wert nehmen zu lassen, können diese weiteren Variablen in die Funktion $y_i = a \cdot x_i + b + u_i$ eingesetzt werden. Zum Beispiel durch das Einsetzen einer weiteren unabhängigen Variablen, heißt die Formel: $y_i = a \cdot x_i + c \cdot z_i + b + u_i$. Hier wurde $c \cdot z_i$! eingefügt. Für $x_i$ und $z_i$ sind die Werte der unabhängigen Variablen einzusetzen und a und c sind die Faktoren für die Werte der unabhängigen Variablen, welche durch die Regressionsgeraden vorgegeben sind.
 
-Bitte vervollständigen Sie den Code als ggplot.
+Bitte vervollständigen Sie den Code des ggplot. Der Kunde wünscht diese Information.
 
 ```{r boston_zwei, exercise=TRUE, exercise.timelimit=5, exercise.blanks = "___+"}
-___(boston_housing, aes(x = rm, y = medv)) + # Welchen Plot möchte ich starteb
+___(boston_housing, aes(x = rm, y = medv)) + # Welchen Plot möchte ich starten
     geom_point(aes(color = lstat), size = 2) +
     geom_smooth(
         method = "lm",
@@ -346,7 +346,7 @@ ggplot(boston_housing, aes(x = rm, y = medv)) +
 
 Wie sie sehen, haben sich die Werte in der Grafik, im Gegensatz zu dem Plot mit nur einer Variablen, nicht geändert. Es ist leider nicht möglich in R eine Grafik mit zwei unabhängigen Variablen als eine Regressionsgerade zu plotten. Statt dessen wurde der Einfluss der unabhängigen Variablen lstat in der Grafik farbig dargestellt.
 
-Die Berechnung durch eine Summary ist aber möglich. Bitte ergänzen Sie den Code um die Summary für rm, lstat und medv zu starten. medv ist immer die abhängige Variable.
+Die Berechnung durch eine Summary ist aber möglich. Bitte ergänzen Sie den Code, um die Summary für rm, lstat und medv zu zeigen. medv ist wie immer die abhängige Variable. Der Kunde fand das Missgeschick, dass das Programm etwas nicht kann übrigens nicht so lustig und fragte, wie Sie es Ihm erklären wollen.
 
 ```{r boston_summary, exercise=TRUE, exercise.timelimit=5, exercise.blanks = "___+"}
 # Lineares Regressionsmodell anpassen
@@ -364,10 +364,6 @@ model <- lm(medv ~ rm + lstat, data = boston_housing)
 summary(model)
 ```
 
-Der Standardfehler ist die Wurzel der Standardabweichung von x geteilt durch die Wurzel von n.
-
-Standardfehler: ![sf](images/sf.jpg){height="90px"}
-
 ```{r interceptor}
 question_numeric("Wie lautet der Schnittpunkt mit der Y-Achse?",
   answer(-1.35827, correct = TRUE),
@@ -382,7 +378,42 @@ question_numeric("Wie groß ist der Anstieg von rm?",
 )
 ```
 
-Als Abschluss können Sie sich noch anschauen, wie sich der Fehlerwert verändert, wenn Sie die Regressionsgerade nach oben oder unter verschieben.
+Der Standardfehler ist die Wurzel der Standardabweichung von x geteilt durch die Wurzel von n, dadurch lässt sich die Genauigkeit des
+Schätzverfahrens an der Varianz der Schätzstatistik festmachen. [3]
+
+Standardfehler: $$\hat{\sigma}_{\bar{x}} = \frac{\sqrt{s_x^2}}{\sqrt{n}}$$
+
+Programmieren Sie bitte am Beispiel “Boston Housing” das Normal-Quantil-Plot der Residuen (Normalverteilungsannahme), um dem Kunden des Immobilienbüros zu zeigen, wie r und r² grafisch dargestellt aussehen.
+
+```{r boston_nqp, exercise=TRUE, exercise.timelimit=5, exercise.blanks = "___+"}
+___ <- lm(medv ~ rm, data = boston_housing)
+___ <- resid(model) 
+qqnorm(residuen, 
+       pch = 20, # Punktform
+       col = "blue", # Farbe der Punkte
+       main = "Normal-Quantil-Plot der Residuen",
+       xlab = "Theoretische Quantile",
+       ylab = "Residuen")
+qqline(residuen, col = "red", lwd = 2) # Gerade für Normalverteilung hinzufügen
+```
+
+```{r boston_nqp-solution, exercise.eval=FALSE, include=FALSE}
+model <- lm(medv ~ rm, data = boston_housing)
+residuen <- resid(model) 
+qqnorm(residuen, 
+       pch = 20, # Punktform
+       col = "blue", # Farbe der Punkte
+       main = "Normal-Quantil-Plot der Residuen",
+       xlab = "Theoretische Quantile",
+       ylab = "Residuen")
+qqline(residuen, col = "red", lwd = 2) # Gerade für Normalverteilung hinzufügen
+```
+
+Bei dem Normal-Quantil-Plot sollten die Werte annähernd alle auf einer Linie ligen, sonst ist die Normalverteilung nicht gegeben.
+Für die Normalverteilung gilt, dass rund Zweidrittel aller Messwerte innerhalb der Entfernung einer Standardabweichung zum Mittelwert liegen. [2]
+Die Normalverteilung ist wichtig für statistische Schätzungen und Tests des Modells. Ist die Normalverteilung nicht erfüllt, kann es zu unzuverlässigen Testergebnissen kommen.
+
+Als Abschluss können Sie sich noch anschauen und dem Kunden erklären, wie sich der Fehlerwert verändert, wenn Sie die Regressionsgerade nach oben oder unter verschieben.
 
 ```{r}
 fluidRow(
@@ -489,9 +520,38 @@ output$error_output <- renderText({
 })
 ```
 
+## Umfrage
+
 Wenn Sie sich bitte die Zeit nehmen und an der kurzen Umfrage zu diesem Lern-Dashboard teilnehmen.
 
 Zugang zur Umfrage über den folgenden Link: https://forms.gle/rJaX17vkoQZUJzck7
+
+## Quellen
+
+[1] ChatGPT wurde genutzt für die Übersicht des Boston Housing Datensatzes (Screenshot) und als Hilfe beim Programmieren des R Code.
+
+[2] de.statista.com 2024. Definition Normalverteilung. https://de.statista.com/statistik/lexikon/definition/95/normalverteilung/ [Stand 2024-12-14].
+
+[3] Fahrmeir, Ludwig u. a. 2024. Statistik: Der Weg zur Datenanalyse. 9. Aufl. 2023. Berlin, Heidelberg: Springer Berlin Heidelberg.
+
+[4] Frost, Ira 2018. Einfache lineare Regression: Die Grundlage für komplexe Regressionsmodelle verstehen. Wiesbaden: Springer VS.
+
+[5] MASS, das R Paket liefert den boston_housing Datensatz.
+
+[6] Rottmann, Horst & Auer, Benjamin R. 2010. Ein Überblick über die lineare Regression. WiSt - Wirtschaftswissenschaftliches Studium 39, 11, 548–554.
+http://elibrary.vahlen.de/index.php?doi=10.15358/0340-1650-2010-11-548 [Stand 2024-11-29].
+
+[7] Sebastian 2023. Lineare Regression – Funktionsweise und Berechnung mit RStudio. https://www.acad-write.com/ratgeber/statistik-rstudio/lineare-regression-rstudio/ [Stand 2024-12-12].
+
+[8] Urban, Dieter & Mayerl, Jochen 2011. Regressionsanalyse: Theorie, Technik und Anwendung. 4., überabeitete und erweiterte Auflage. Wiesbaden: VS Verlag für Sozialwissenschaften.
+
+[9] Varnhorn, Beate & Lexikoninstitut Bertelsmann (Hg.) 2006. Bertelsmann, Das neue Universallexikon: 70000 Stichwörter und erklärte Begriffe; 100 Tabellen. Gütersloh München: Wissen-Media-Verl.
+
+[10] Weiß, C. 2018. Lineare Regression: Folge 8. Notfall +  Rettungsmedizin 21, 5, 406–408. http://link.springer.com/10.1007/s10049-018-0473-0 [Stand 2024-12-1].
+
+
+
+
 
 ::: data_protection_text
 ### Autor
@@ -505,23 +565,4 @@ Lern-Dashboard über lineare Regression
 ### Datenschutz
 
 Der Server des Lern-Dashboard sammelt statistische Daten über die Nutzung des Lern-Dashboard. Diese Daten werden nicht weitergegeben und enthalten keine personenbezogenen Informationen.
-
-### Quellen
-
-de.statista.com 2024. Definition Normalverteilung. https://de.statista.com/statistik/lexikon/definition/95/normalverteilung/ [Stand 2024-12-14].
-
-Fahrmeir, Ludwig u. a. 2024. Statistik: Der Weg zur Datenanalyse. 9. Aufl. 2023. Berlin, Heidelberg: Springer Berlin Heidelberg.
-
-Frost, Ira 2018. Einfache lineare Regression: Die Grundlage für komplexe Regressionsmodelle verstehen. Wiesbaden: Springer VS.
-
-Rottmann, Horst & Auer, Benjamin R. 2010. Ein Überblick über die lineare Regression. WiSt - Wirtschaftswissenschaftliches Studium 39, 11, 548–554.
-http://elibrary.vahlen.de/index.php?doi=10.15358/0340-1650-2010-11-548 [Stand 2024-11-29].
-
-Sebastian 2023. Lineare Regression – Funktionsweise und Berechnung mit RStudio. https://www.acad-write.com/ratgeber/statistik-rstudio/lineare-regression-rstudio/ [Stand 2024-12-12].
-
-Urban, Dieter & Mayerl, Jochen 2011. Regressionsanalyse: Theorie, Technik und Anwendung. 4., überabeitete und erweiterte Auflage. Wiesbaden: VS Verlag für Sozialwissenschaften.
-
-Weiß, C. 2018. Lineare Regression: Folge 8. Notfall +  Rettungsmedizin 21, 5, 406–408. http://link.springer.com/10.1007/s10049-018-0473-0 [Stand 2024-12-1].
-
-ChatGPT für die Übersicht des Boston Housing Datensatzes und als Hilfe beim Programmieren des R Code
 :::
