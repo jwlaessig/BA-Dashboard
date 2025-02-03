@@ -147,7 +147,8 @@ Mathematisch hat die Gerade die Formel: $f(x)=a \cdot x + b$
 
 Weil die Werte in der Grafik, welche Sie gerade erstellt haben, und die Werte anderer Beispiele nicht immer genau auf der Regressionsgeraden liegen, ist es wichtig in der Formel anzugeben, dass die Werte von der Regressionsgeraden abweichen können. Es wird eine Variable u für dieses Abweichen (der sogenannte Fehler) eingefügt, sodass die Formel lautet: $y_i = a \cdot x_i + b + u_i$. 
 
-b gibt den Achsenabschnitt an, also den Schnittpunkt der Regressionsgeraden mit der y-Achse für den Wert: $x_i = 0$ an.
+b gibt den Achsenabschnitt an, also den Schnittpunkt der Regressionsgeraden mit der y-Achse (wird auch Interceptor genannt) für den Wert: $x_i = 0$ an.
+Der Steigungsparameter gibt die Steigung der Regressionsgeraden an.
 
 ```{r Schnittpunkt}
 # Erstellen des linearen Modells
@@ -302,6 +303,16 @@ Determinationskoeffizient: $$r^2 = \frac{\sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2}
 
 Ein Determinationskoeffizient von 0,6 bedeutet, dass 60% der Werte der abhängigen Variablen y von der unabhängigen Variablen x erklärt werden können. 
 Dementsprechend sind die restlichen 40% durch den Fehler u zu erklären.
+
+```{r boston_smry}
+# Lineares Regressionsmodell anpassen
+model <- lm(medv ~ rm, data = boston_housing)
+
+# Zusammenfassung des Modells anzeigen
+summary(model)
+```
+
+Der Adjusted R-squared Wert von 0.4825 sagt aus, dass ca. 48% der Werte von medv (Medianwert der Immobilie in 1000$) durch die Variable rm (Durchschnittliche Anzahl der Räume pro Wohnung) erklärt werden können.
 
 Der Bravais-Person Korrelationskoeffizient ist die Kovarianz geteilt durch die Wurzel des Produkts von der Standardabweichung von x und der Standardabweichung von y.
 

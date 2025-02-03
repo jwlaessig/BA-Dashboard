@@ -124,7 +124,7 @@ if (window.hljs) {
 <!-- begin doc-metadata -->
 <div id="doc-metadata">
 <div class="author_and_date">
-<h4 class="date"><em>22.01.2025</em></h4>
+<h4 class="date"><em>01.02.2025</em></h4>
 <h4 class="author"><em>Jürgen Willy Lässig</em></h4>
 </div>
 <div class="tutorial_title">
@@ -312,8 +312,9 @@ Regressionsgeraden abweichen können. Es wird eine Variable u für dieses
 Abweichen (der sogenannte Fehler) eingefügt, sodass die Formel lautet:
 <span class="math inline">\(y_i = a \cdot x_i + b + u_i\)</span>.</p>
 <p>b gibt den Achsenabschnitt an, also den Schnittpunkt der
-Regressionsgeraden mit der y-Achse für den Wert: <span
-class="math inline">\(x_i = 0\)</span> an.</p>
+Regressionsgeraden mit der y-Achse (wird auch Interceptor genannt) für
+den Wert: <span class="math inline">\(x_i = 0\)</span> an. Der
+Steigungsparameter gibt die Steigung der Regressionsgeraden an.</p>
 <p><img src="BA-Dashboard_files/figure-html/Schnittpunkt-1.png" width="624" /></p>
 <div class="panel panel-default tutorial-question-container">
 <div data-label="a_und_b" class="tutorial-question panel-body">
@@ -462,6 +463,28 @@ den linearen Einfluss von x erklärbar ist. [4]</p>
 der abhängigen Variablen y von der unabhängigen Variablen x erklärt
 werden können. Dementsprechend sind die restlichen 40% durch den Fehler
 u zu erklären.</p>
+<pre><code>## 
+## Call:
+## lm(formula = medv ~ rm, data = boston_housing)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -23.346  -2.547   0.090   2.986  39.433 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -34.671      2.650  -13.08   &lt;2e-16 ***
+## rm             9.102      0.419   21.72   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.616 on 504 degrees of freedom
+## Multiple R-squared:  0.4835, Adjusted R-squared:  0.4825 
+## F-statistic: 471.8 on 1 and 504 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Der Adjusted R-squared Wert von 0.4825 sagt aus, dass ca. 48% der
+Werte von medv (Medianwert der Immobilie in 1000$) durch die Variable rm
+(Durchschnittliche Anzahl der Räume pro Wohnung) erklärt werden
+können.</p>
 <p>Der Bravais-Person Korrelationskoeffizient ist die Kovarianz geteilt
 durch die Wurzel des Produkts von der Standardabweichung von x und der
 Standardabweichung von y.</p>
@@ -795,7 +818,7 @@ learnr:::store_exercise_cache(structure(list(label = "boston_head", global_setup
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "rm-head", question = structure("Wie lautet der erste rm Wert?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_bdf70f7", 
+"character")), answers = list(structure(list(id = "lnr_ans_e5c8563", 
     option = "6.575", value = 6.575, label = structure("6.575", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -805,7 +828,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "rm-head-answer", question = "rm-head"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 968632711.548945, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 2062874421.0394, 
     options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -813,16 +836,16 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "rm", question = structure("Über welches Attribut aus dem Boston Housing Datensatz wird in der Summary eine Aussage getroffen? Der angezeigte Wert ist 9.102", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_394acf4", 
+"character")), answers = list(structure(list(id = "lnr_ans_6629c52", 
     option = "dis", value = "dis", label = structure("dis", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a9e98dd", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_553b5b7", 
     option = "nox", value = "nox", label = structure("nox", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_acececd", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9b5acd2", 
     option = "zn", value = "zn", label = structure("zn", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_19da64e", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_6ea646", 
     option = "rm", value = "rm", label = structure("rm", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -832,28 +855,28 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "rm-answer", question = "rm"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = TRUE, seed = 1901522232.11453, options = list()), class = c("learnr_radio", 
+    allow_retry = TRUE, seed = 503844313.765379, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "mittelwert", question = structure("Was ist die Bedeutung von Regression in der Statistik?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_2611602", 
+"character")), answers = list(structure(list(id = "lnr_ans_1bca640", 
     option = "Das die durch die Regressionsgleichung berechneten y-Werte näher am ersten Quartil liegen als die gemessenen oder beobachteten Werte.", 
     value = "Das die durch die Regressionsgleichung berechneten y-Werte näher am ersten Quartil liegen als die gemessenen oder beobachteten Werte.", 
     label = structure("Das die durch die Regressionsgleichung berechneten y-Werte näher am ersten Quartil liegen als die gemessenen oder beobachteten Werte.", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a1ef6a2", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_fd3f393", 
     option = "Das die durch die Regressionsgleichung berechneten y-Werte näher am Mittelwert liegen als die gemessenen oder beobachteten Werte.", 
     value = "Das die durch die Regressionsgleichung berechneten y-Werte näher am Mittelwert liegen als die gemessenen oder beobachteten Werte.", 
     label = structure("Das die durch die Regressionsgleichung berechneten y-Werte näher am Mittelwert liegen als die gemessenen oder beobachteten Werte.", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_12f6154", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_563fa05", 
     option = "Das die durch die Regressionsgleichung berechneten y-Werte näher am Median liegen als die gemessenen oder beobachteten Werte.", 
     value = "Das die durch die Regressionsgleichung berechneten y-Werte näher am Median liegen als die gemessenen oder beobachteten Werte.", 
     label = structure("Das die durch die Regressionsgleichung berechneten y-Werte näher am Median liegen als die gemessenen oder beobachteten Werte.", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_38b31d8", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_135aafe", 
     option = "Das die durch die Regressionsgleichung berechneten y-Werte näher am dritten Quartil liegen als die gemessenen oder beobachteten Werte.", 
     value = "Das die durch die Regressionsgleichung berechneten y-Werte näher am dritten Quartil liegen als die gemessenen oder beobachteten Werte.", 
     label = structure("Das die durch die Regressionsgleichung berechneten y-Werte näher am dritten Quartil liegen als die gemessenen oder beobachteten Werte.", html = TRUE, class = c("html", 
@@ -865,7 +888,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "mittelwert-answer", question = "mittelwert"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 1680508447.21745, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 1616031934.74748, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
@@ -923,18 +946,18 @@ learnr:::store_exercise_cache(structure(list(label = "boston_rm", global_setup =
 
 
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "ablesen", question = structure("Eine Wohnung mit sechs Räumen hat einen wert von ca.?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_c2348af", 
-    option = "15", value = "15", label = structure("15", html = TRUE, class = c("html", 
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "ablesen", question = structure("Eine Wohnung mit sechs Räumen hat einen Wert von ca.? medv ist der Medianwert der Immobilie (in $1000)", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_56b3d92", 
+    option = "15000$", value = "15000$", label = structure("15000$", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_acd45cb", 
-    option = "20", value = "20", label = structure("20", html = TRUE, class = c("html", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_ef3bdf7", 
+    option = "20000$", value = "20000$", label = structure("20000$", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_fd87c3a", 
-    option = "25", value = "25", label = structure("25", html = TRUE, class = c("html", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4553504", 
+    option = "25000$", value = "25000$", label = structure("25000$", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_1eb180b", 
-    option = "30", value = "30", label = structure("30", html = TRUE, class = c("html", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4cc4cba", 
+    option = "30000$", value = "30000$", label = structure("30000$", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
 "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
@@ -943,19 +966,19 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "ablesen-answer", question = "ablesen"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 781358155.136152, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 1392021797.85179, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "a_und_b", question = structure("Welche Aussage über a und b ist richtig?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_e2efb70", 
+"character")), answers = list(structure(list(id = "lnr_ans_350d03c", 
     option = "a bezeichnen wir als die Modellkonstante und b als den Steigungsparameter. b gibt an, um wie viele Einheiten sich verändert, \nwenn  bei Konstanthaltung aller anderen Einflussgrößen (hier also $u_i$) um eine Einheit steigt.", 
     value = "a bezeichnen wir als die Modellkonstante und b als den Steigungsparameter. b gibt an, um wie viele Einheiten sich verändert, \nwenn  bei Konstanthaltung aller anderen Einflussgrößen (hier also $u_i$) um eine Einheit steigt.", 
     label = structure("a bezeichnen wir als die Modellkonstante und b als den Steigungsparameter. b gibt an, um wie viele Einheiten sich verändert,\nwenn  bei Konstanthaltung aller anderen Einflussgrößen (hier also \\(u_i\\)) um eine Einheit steigt.", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_431faaf", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b84eb1", 
     option = "b bezeichnen wir als die Modellkonstante und a als den Steigungsparameter. a gibt an, um wie viele Einheiten sich verändert, \nwenn  bei Konstanthaltung aller anderen Einflussgrößen (hier also $u_i$) um eine Einheit steigt. [6]", 
     value = "b bezeichnen wir als die Modellkonstante und a als den Steigungsparameter. a gibt an, um wie viele Einheiten sich verändert, \nwenn  bei Konstanthaltung aller anderen Einflussgrößen (hier also $u_i$) um eine Einheit steigt. [6]", 
     label = structure("b bezeichnen wir als die Modellkonstante und a als den Steigungsparameter. a gibt an, um wie viele Einheiten sich verändert,\nwenn  bei Konstanthaltung aller anderen Einflussgrößen (hier also \\(u_i\\)) um eine Einheit steigt. [6]", html = TRUE, class = c("html", 
@@ -967,7 +990,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "a_und_b-answer", question = "a_und_b"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 806634428.624382, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 1445462859.3269, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
@@ -1028,17 +1051,17 @@ learnr:::store_exercise_cache(structure(list(label = "boston_sr", global_setup =
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "sr", question = structure("Was ist an der Darstellung der Standardisierte Residuen anders im Gegensatz zu dem normalen Plot?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_e7fbf7b", 
+"character")), answers = list(structure(list(id = "lnr_ans_d8d40f0", 
     option = "Wie in dem Programm-Code zu sehen, wurde die Grafik um 20 Grad gedreht (pch), damit die Regressionsgerade auf der x-Achse liegt.", 
     value = "Wie in dem Programm-Code zu sehen, wurde die Grafik um 20 Grad gedreht (pch), damit die Regressionsgerade auf der x-Achse liegt.", 
     label = structure("Wie in dem Programm-Code zu sehen, wurde die Grafik um 20 Grad gedreht (pch), damit die Regressionsgerade auf der x-Achse liegt.", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f4051d6", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b598029", 
     option = "Die abhängige und unabhängige Variable wurden ausgetauscht.", 
     value = "Die abhängige und unabhängige Variable wurden ausgetauscht.", 
     label = structure("Die abhängige und unabhängige Variable wurden ausgetauscht.", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_72c8b21", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_e9992c0", 
     option = "Die Regressionsgerade verläuft als x-Achse und im positiven und negativen Bereich der y-Achse werden die Abweichungen der Werte von der Regressionsgeraden dargestellt.", 
     value = "Die Regressionsgerade verläuft als x-Achse und im positiven und negativen Bereich der y-Achse werden die Abweichungen der Werte von der Regressionsgeraden dargestellt.", 
     label = structure("Die Regressionsgerade verläuft als x-Achse und im positiven und negativen Bereich der y-Achse werden die Abweichungen der Werte von der Regressionsgeraden dargestellt.", html = TRUE, class = c("html", 
@@ -1050,7 +1073,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "sr-answer", question = "sr"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = TRUE, seed = 1388965253.85321, options = list()), class = c("learnr_radio", 
+    allow_retry = TRUE, seed = 21014778.4902142, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
@@ -1114,10 +1137,10 @@ learnr:::store_exercise_cache(structure(list(label = "boston_ggP", global_setup 
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "r_und_r2", question = structure("Ist der Korrelationskoeffizient r die Wurzel aus dem Determinationskoeffizient r²?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_e7c4b60", 
+"character")), answers = list(structure(list(id = "lnr_ans_268607d", 
     option = "Das ist wahr.", value = "Das ist wahr.", label = structure("Das ist wahr.", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c6b7f49", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_957fd79", 
     option = "Das ist falsch.", value = "Das ist falsch.", label = structure("Das ist falsch.", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1127,7 +1150,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "r_und_r2-answer", question = "r_und_r2"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 1651425557.23099, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 192646416.910292, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
@@ -1246,7 +1269,7 @@ learnr:::store_exercise_cache(structure(list(label = "boston_summary", global_se
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "interceptor", 
     question = structure("Wie lautet der Schnittpunkt mit der Y-Achse?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_fe98004", 
+    "character")), answers = list(structure(list(id = "lnr_ans_f52c56", 
         option = "-1.35827", value = -1.35827, label = structure("-1.35827", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1257,14 +1280,14 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = NULL, post_message = NULL), ids = list(
         answer = "interceptor-answer", question = "interceptor"), 
     loading = NULL, random_answer_order = FALSE, allow_retry = TRUE, 
-    seed = 2005572123.06608, options = list(min = NA, max = NA, 
+    seed = 1113101731.98167, options = list(min = NA, max = NA, 
         step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "steigung", question = structure("Wie groß ist der Anstieg von rm?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_f491079", 
+"character")), answers = list(structure(list(id = "lnr_ans_99651e5", 
     option = "5.09479", value = 5.09479, label = structure("5.09479", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1274,7 +1297,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "steigung-answer", question = "steigung"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = TRUE, seed = 1147271327.96576, 
+    random_answer_order = FALSE, allow_retry = TRUE, seed = 253631108.881894, 
     options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
